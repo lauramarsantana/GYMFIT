@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title> GYM FIT</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="css/style.css" rel="stylesheet" >
+    </head>
+    <body>
+        <div id="inicio">
+            <h1> GYMFIT </h1>
+            <form action="GYMServlet">
+                <h3 id="titulo"> Usuario </h3>
+                <input type="text" name="usuario" id="usuario" placeholder="usuario">
+                <h3 id="categoria"> Tipo de entrenamiento </h3>
+                <select name="rutina">
+                    <option> Adelgazar </option>
+                    <option> Tonificar </option>
+                </select>
+                <h3 id="dia"> ¿Cuantos días vas a entrenar? </h3>
+                <input type="number" name="dias" id="dias">
+                <input type="submit" value="enviar">
+            </form>
+        </div>
+    </body>
+</html>

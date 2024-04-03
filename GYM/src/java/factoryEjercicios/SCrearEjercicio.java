@@ -35,7 +35,7 @@ public class SCrearEjercicio {
             }
         }
         else if(tipo.equals("Tonificar")){
-            for (int i=0; i<3; i++){
+            for (int i=0; i<2; i++){
                 nueva.add(getEjercicioRandom(ejerciciosCardio.ejerciciosCardio()));
                 nueva.add(getEjercicioRandom(ejerciciosPull.ejerciciosPull()));
                 nueva.add(getEjercicioRandom(ejerciciosPush.ejerciciosPush()));

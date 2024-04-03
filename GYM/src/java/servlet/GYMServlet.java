@@ -1,8 +1,5 @@
 package servlet;
 
-import factoryPDF.ImageRender;
-import factoryPDF.PDFContentGeneratorImp;
-import factoryPDF.PDFCreator;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -61,45 +58,49 @@ public class GYMServlet extends HttpServlet {
         
         
         
-        try (PrintWriter out = response.getWriter()) {
-    out.println("<!DOCTYPE html>");
-    out.println("<html>");
-    out.println("<head>");
-    out.println("<link href=\"css/style2.css\" rel=\"stylesheet\">");
-    out.println("<title>Plan de entrenamiento</title>");            
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>Usuario " + user.getNombre() + "</h1>");
-    int contador = 0;
-    for (List<Ejercicio> ejercicio : ejercicios) {
-        contador++;
-        out.println("<div class=\"container\">"); // Agregamos un contenedor para cada día
-        out.println("<p class=\"dia\">Día número: " + contador + "</p>");
-        for(Ejercicio e : ejercicio){
-            out.println("<div class=\"card\">"); // Agregamos una tarjeta para cada ejercicio
-            out.println("<p class=\"nombre-ejercicio\">Nombre ejercicio: " + e.getNombreEjercicio() + "</p>");
-            out.println("<img src=\"img/" + e.getFoto() + "\" class=\"imagen-ejercicio\">"); // Aplicar clase CSS a la imagen
-            if(e instanceof Cardio){
-                Cardio cardio = (Cardio) e;
-                out.println("<p class=\"duracion\">Duración: " + cardio.getDuracion() + "</p>");
+    try (PrintWriter out = response.getWriter()) {
+        out.println("<!DOCTYPE html>");
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<link href=\"css/style2.css\" rel=\"stylesheet\">");
+        out.println("<title>Plan de entrenamiento</title>");            
+        out.println("</head>");
+        out.println("<body>");
+        out.println("<h1 id=\"usuario\">Usuario " + user.getNombre() + "</h1>");
+        int contador = 0;
+        for (List<Ejercicio> ejercicio : ejercicios) {
+            contador++;
+            out.println("<div class=\"container\">");
+            out.println("<p class=\"dia\">Día número: " + contador + "</p>");
+            for(Ejercicio e : ejercicio){
+                out.println("<div class=\"card\">");
+                    out.println("<div class=\"imagenejercicio\">");
+                    out.println("<img src=\"img/" + e.getFoto() + "\">");
+                    out.println("</div>");
+                    out.println("<div class=\"contenido\">");
+                    out.println("<h2 class=\"nombre-ejercicio\">" + e.getNombreEjercicio() + "</h2>");
+                        if(e instanceof Cardio){
+                            Cardio cardio = (Cardio) e;
+                            out.println("<p class=\"duracion\">Duración: " + cardio.getDuracion() + "</p>");
+                        }
+                        else if(e instanceof Push){
+                            Push push = (Push)e;
+                            out.println("<p class=\"repeticiones\">Repeticiones: " + push.getRepeticion() + "</p>");
+                            out.println("<p class=\"series\">Series: " + push.getSerie() + "</p>");
+                        }
+                        else if(e instanceof Pull){
+                            Pull pull = (Pull)e;
+                            out.println("<p class=\"repeticiones\">Repeticiones: " + pull.getRepeticion() + "</p>");
+                            out.println("<p class=\"series\">Series: " + pull.getSerie() + "</p>");
+                        }
+                        out.println("</div>");
+                out.println("</div>");
             }
-            else if(e instanceof Push){
-                Push push = (Push)e;
-                out.println("<p class=\"repeticiones\">Repeticiones: " + push.getRepeticion() + "</p>");
-                out.println("<p class=\"series\">Series: " + push.getSerie() + "</p>");
-            }
-            else if(e instanceof Pull){
-                Pull pull = (Pull)e;
-                out.println("<p class=\"repeticiones\">Repeticiones: " + pull.getRepeticion() + "</p>");
-                out.println("<p class=\"series\">Series: " + pull.getSerie() + "</p>");
-            }
-            out.println("</div>"); // Cierre de la tarjeta
+            out.println("</div>"); 
         }
-        out.println("</div>"); // Cierre del contenedor
+        out.println("</body>");
+        out.println("</html>");
     }
-    out.println("</body>");
-    out.println("</html>");
-}
 
     }
 

@@ -1,63 +1,59 @@
-/* Reset de estilos */
-* {
+ * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilos para el cuerpo de la página */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
+    background-color: #9c8ab4;
     padding: 20px;
+    background-image: url("../img/inicio.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
-/* Estilos para el contenedor principal */
 #inicio {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #fff;
+    background-color: rgba(71, 0, 100, 0.4);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilos para el título principal */
+
 h1 {
     text-align: center;
-    color: #333;
+    color: #fff;
     margin-bottom: 20px;
 }
 
-/* Estilos para el formulario */
 form {
     text-align: center;
 }
 
-/* Estilos para los títulos de sección */
 h3 {
-    color: #555;
+    color:#fff;
     margin-top: 20px;
 }
 
-/* Estilos para los inputs y select */
 input[type="text"],
 input[type="number"],
 select {
     width: 100%;
     padding: 10px;
     margin-top: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #a487b4; 
     border-radius: 5px;
     box-sizing: border-box;
 }
 
-/* Estilos para el botón */
 input[type="submit"] {
     width: 100%;
     padding: 10px;
     margin-top: 20px;
-    background-color: #007bff;
+    background-color: #6a4a87;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -66,6 +62,5 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #4e3264; 
 }
-

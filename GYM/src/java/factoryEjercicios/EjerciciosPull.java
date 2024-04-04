@@ -15,7 +15,7 @@ public class EjerciciosPull {
         List<Ejercicio> ejercicioPull = new ArrayList<>();
         
         Pull pull1 = new Pull("Remo al pecho en maquina", 3, 7, "remo-pecho-maquina.png");
-        Pull pull2 = new Pull("Dominadas estrictas", 3, 11, "dominadas.png");
+        Pull pull2 = new Pull("Dominadas estrictas", 3, 11, "dominadas.jpg");
         Pull pull3 = new Pull("Remo con mancuerna en banco", 3, 10, "remo-mancuerna-banco.png");
         Pull pull4 = new Pull("Face pulls", 2, 12, "face-pulls.jpeg");
         Pull pull5 = new Pull("Curl de bíceps alterno con mancuernas", 3, 20, "curl-bicep-mancuerna.jpeg");

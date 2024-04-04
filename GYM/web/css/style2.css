@@ -6,16 +6,29 @@
 }
 
 body {
-    display:flex;
-    padding: 20px;
+    display: block;
+    padding: 60px;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(45deg,#fff,#000);
+    background-image: url("../img/ejercicios.jpg");
+    min-height: 500px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
+
 #usuario{
     text-align: center;
     color: #fff;
+    margin-bottom: 20px;
+}
+
+.dia{
+    text-align: center;
+    color: #fff;
+    margin-top: 20px;
     margin-bottom: 20px;
 }
 
@@ -36,7 +49,7 @@ body {
     width: 350px;
     height: 300px;
     padding: 20px;
-    background-color: rgba(71, 0, 100, 0.7);
+    background-color: rgba(71, 0, 100, 0.5);
     border-radius: 20px;
     box-shadow: 0 35px 80px rgba(0,0,0,0.15);
     transition: 0.5s;

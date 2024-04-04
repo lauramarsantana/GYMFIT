@@ -44,14 +44,25 @@ public class SCrearEjercicio {
         return nueva;
     }
     
-    public List<List<Ejercicio>> crearEntrenamientoSemana(int dia_entrenamiento,String tipo){
+    public List<List<Ejercicio>> crearEntrenamientoSemana(int dias_entrenamiento, String tipo) {
         List<List<Ejercicio>> semana = new ArrayList<>();
+        Random random = new Random();
         
-        for (int i = 0; i < dia_entrenamiento; i++) {
+        // Agregar rutina de 3 días con un día para cada tipo de ejercicio
+        for (int i = 0; i < 3; i++) {
             semana.add(crearRutinaxtipo(tipo));
         }
+        
+        // Si el usuario especifica más de 3 días, repetir los ejercicios de los primeros 3 días
+        if (dias_entrenamiento > 3) {
+            for (int i = 3; i < dias_entrenamiento; i++) {
+                semana.add(semana.get(random.nextInt(3))); // Repetir rutina de 3 días
+            }
+        }
+        
         return semana;
     }
+
     
     public Ejercicio getEjercicioRandom(List<Ejercicio> pEjercicios){
         Random random = new Random();

@@ -22,8 +22,10 @@ import logica.Usuario;
  */
 @WebServlet(name="GYMServlet",urlPatterns = {"/GYMServlet"})
 public class GYMServlet extends HttpServlet {
-    //private List<Usuario> usuarios;
+    
     private Usuario user;
+    private int contadorRutina = 0;
+    
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,7 +43,21 @@ public class GYMServlet extends HttpServlet {
         String name = request.getParameter("usuario");
         
         String dia = request.getParameter("dias");
-        int dia_entrenamiento = Integer.parseInt(dia);
+        int dia_entrenamiento;
+        
+        //validar numero de dias para que este entre 1 y 7 dias
+        try {
+            dia_entrenamiento = Integer.parseInt(dia);
+            if (dia_entrenamiento < 1 || dia_entrenamiento > 7) {
+                throw new NumberFormatException("El número de días debe estar entre 1 y 7.");
+            }   
+        } catch (NumberFormatException e) {
+            // Generar script JavaScript para mostrar ventana emergente con el mensaje de error
+            String errorMessage = "El número de días debe estar entre 1 y 7.";
+            String script = "<script>alert('" + errorMessage + "');window.history.back();</script>";
+            response.getWriter().println(script);
+            return;
+        }
                 
         String rutina = request.getParameter("rutina");
         
@@ -54,9 +70,18 @@ public class GYMServlet extends HttpServlet {
             user = new Usuario(name, dia_entrenamiento, t);
         }
         
+        // Validar que todos los campos estén llenos
+        if (name == null || name.isEmpty() || dia == null || dia.isEmpty()) {
+            // Generar script JavaScript para mostrar ventana emergente con el mensaje de error
+            String errorMessage = "Todos los campos son obligatorios.";
+            String script = "<script>alert('" + errorMessage + "');window.history.back();</script>";
+            response.getWriter().println(script);
+            return;
+        }
+        
+        
         List<List<Ejercicio>> ejercicios = user.getRutina().getEjercicios();
-        
-        
+                
         
     try (PrintWriter out = response.getWriter()) {
         out.println("<!DOCTYPE html>");
@@ -67,11 +92,12 @@ public class GYMServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h1 id=\"usuario\">Usuario " + user.getNombre() + "</h1>");
-        int contador = 0;
+        
         for (List<Ejercicio> ejercicio : ejercicios) {
-            contador++;
-            out.println("<div class=\"container\">");
-            out.println("<p class=\"dia\">Día número: " + contador + "</p>");
+            contadorRutina++;
+            
+            out.println("<h2 class=\"dia\">Rutina: " + contadorRutina + "</h2>");
+            out.println("<div class=\"container\">");   
             for(Ejercicio e : ejercicio){
                 out.println("<div class=\"card\">");
                     out.println("<div class=\"imagenejercicio\">");
@@ -81,7 +107,7 @@ public class GYMServlet extends HttpServlet {
                     out.println("<h2 class=\"nombre-ejercicio\">" + e.getNombreEjercicio() + "</h2>");
                         if(e instanceof Cardio){
                             Cardio cardio = (Cardio) e;
-                            out.println("<p class=\"duracion\">Duración: " + cardio.getDuracion() + "</p>");
+                            out.println("<h3 class=\"duracion\">Duración: " + cardio.getDuracion() + "</h3>");
                         }
                         else if(e instanceof Push){
                             Push push = (Push)e;
